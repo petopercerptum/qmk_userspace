@@ -153,7 +153,7 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
 
 void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
     switch(keycode) {
-        case KC_DOT:
+        case KC_SPC:
             unregister_code16((!shifted) ? KC_SPC : KC_UNDS);
             break;
         default:
