@@ -27,7 +27,7 @@ enum dilemma_keymap_layers {
 // Automatically enable sniping-mode on the pointer layer.
 // #define DILEMMA_AUTO_SNIPING_ON_LAYER LAYER_POINTER
 
-#define TO_BSE TO(LATER_BASE)
+#define TO_BSE TO(LAYER_BASE)
 #define TO_NUM TO(LAYER_NUM)
 #define TO_CTR TO(LAYER_CONTROL)
 #define PT_Z LT(LAYER_POINTER, KC_Z)
