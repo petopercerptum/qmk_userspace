@@ -29,4 +29,4 @@
 #define ENABLE_RGB_MATRIX_SOLID_COLOR
 #define RGB_MATRIX_DEFAULT_HUE 0 // Sets the default hue value, if none has been set
 #define RGB_MATRIX_DEFAULT_SAT 0 // Sets the default saturation value, if none has been set
-#define RGB_MATRIX_DEFAULT_VAL 128 // Sets the default brightness value, if none has been set
+#define RGB_MATRIX_DEFAULT_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS // Sets the default brightness value, if none has been set
