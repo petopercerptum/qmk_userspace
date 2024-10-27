@@ -63,11 +63,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_LNUM, KC_PSLS, KC_PAST, KC_PMNS, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       RGB_MOD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,   KC_P7,   KC_P8,   KC_P9, KC_PPLS, _______,
+       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,   KC_P7,   KC_P8,   KC_P9, KC_PPLS, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       RGB_TOG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      KC_P0,   KC_P4,   KC_P5,   KC_P6,  KC_DQT, _______,
+       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      KC_P0,   KC_P4,   KC_P5,   KC_P6,  KC_DQT, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-      RGB_RMOD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_PDOT,   KC_P1,   KC_P2,   KC_P3, KC_PENT, _______,
+       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_PDOT,   KC_P1,   KC_P2,   KC_P3, KC_PENT, _______,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                           TO_CTR, _______, _______, _______,    _______, _______, _______, _______
   //                    ╰───────────────────────────────────╯ ╰───────────────────────────────────╯
@@ -134,6 +134,8 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
         case KC_SPC:
             return true;
+        case TO_NUM:
+            return true;
         default:
             return false;
     }
@@ -143,6 +145,9 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
     switch(keycode) {
         case KC_SPC:
             register_code16((!shifted) ? KC_SPC : KC_UNDS);
+            break;
+        case TO_NUM:
+            register_code16((!shifted) ? TO_NUM : TO_CTR);
             break;
         default:
             if (shifted) {
@@ -157,6 +162,9 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
     switch(keycode) {
         case KC_SPC:
             unregister_code16((!shifted) ? KC_SPC : KC_UNDS);
+            break;
+        case TO_NUM:
+            register_code16((!shifted) ? TO_NUM : TO_CTR);
             break;
         default:
             // & 0xFF gets the Tap key for Tap Holds, required when using Retro Shift
