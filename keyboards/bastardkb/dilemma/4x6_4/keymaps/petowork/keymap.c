@@ -120,6 +120,7 @@ void rgb_matrix_update_pwm_buffers(void);
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         uint8_t layer = get_highest_layer(layer_state);
         if (layer > 0) {
+        HSV hsv = rgb_matrix_get_hsv();
             switch (get_highest_layer(layer_state)) {
                 case 1:
                     hsv = (HSV){HSV_BLUE};
