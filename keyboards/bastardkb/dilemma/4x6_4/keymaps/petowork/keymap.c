@@ -117,59 +117,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef RGB_MATRIX_ENABLE
 // Forward-declare this helper function since it is defined in rgb_matrix.c.
 void rgb_matrix_update_pwm_buffers(void);
-bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    if (host_keyboard_led_state().caps_lock) {
-        for (int i = led_min; i <= led_max; i++) {
-            if (HAS_FLAGS(g_led_config.flags[i], LED_FLAG_MODIFIER)) {
-                rgb_matrix_set_color(i, MIN(rgb_matrix_get_val() + 76, 255), 0x00, 0x00);
-            }
-        }
-    }
-
-    HSV hsv = rgb_matrix_get_hsv();
-
-    uint8_t modifiers = get_mods();
-    // Check if any of the modifiers (Ctrl, Shift, Alt, or GUI/Cmd) are held
-        uint8_t layer = get_highest_layer(layer_state);
-        if (layer > 0) {
-            switch (get_highest_layer(layer_state)) {
-                case 1:
-                    hsv = (HSV){HSV_BLUE};
-                    break;
-                case 2:
-                    hsv = (HSV){HSV_RED};
-                    break;
-                case 3:
-                    hsv = (HSV){HSV_CHARTREUSE};
-                    break;
-                case 4:
-                    hsv = (HSV){HSV_GREEN};
-                    break;
-                case 5:
-                    hsv = (HSV){HSV_TEAL};
-                    break;
-                case 6:
-                    hsv = (HSV){HSV_PURPLE};
-                    break;
-                default:
-                    hsv = (HSV){HSV_WHITE};
-                    break;
-            };
-        }
-    }
-
-    if (hsv.v > rgb_matrix_get_val()) {
-        hsv.v = MIN(rgb_matrix_get_val() + 22, 255);
-    }
-    RGB rgb = hsv_to_rgb(hsv);
-
-    for (uint8_t i = led_min; i < led_max; i++) {
-        if (HAS_FLAGS(g_led_config.flags[i], LED_FLAG_UNDERGLOW)) {
-            rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
-        }
-    }
-    return false;
-};
 #endif // RGB_MATRIX_ENABLE
 
 #ifdef ENCODER_MAP_ENABLE
