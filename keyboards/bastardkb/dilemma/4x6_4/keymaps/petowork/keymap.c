@@ -117,6 +117,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef RGB_MATRIX_ENABLE
 // Forward-declare this helper function since it is defined in rgb_matrix.c.
 void rgb_matrix_update_pwm_buffers(void);
+   const uint8_t layer = get_highest_layer(layer_state);
 static HSV _get_hsv_for_layer_index(uint8_t layer) {
     switch (layer) {
         case 1:
