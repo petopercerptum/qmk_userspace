@@ -117,25 +117,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef RGB_MATRIX_ENABLE
 // Forward-declare this helper function since it is defined in rgb_matrix.c.
 void rgb_matrix_update_pwm_buffers(void);
-static HSV _get_hsv_for_layer_index(uint8_t layer) {
-    switch (layer) {
-        case 1:
-            return (HSV){HSV_BLUE};
-        case 2:
-            return (HSV){HSV_RED};
-        case 3:
-            return (HSV){HSV_CHARTREUSE};
-        case 4:
-            return (HSV){HSV_GREEN};
-        case 5:
-            return (HSV){HSV_TEAL};
-        case 6:
-            return (HSV){HSV_PURPLE};
-        default:
-            return (HSV){HSV_WHITE};
-    };
-}
-_get_hsv_for_layer_index(1)
 #endif // RGB_MATRIX_ENABLE
 
 #ifdef ENCODER_MAP_ENABLE
