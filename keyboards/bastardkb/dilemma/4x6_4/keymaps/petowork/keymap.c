@@ -115,10 +115,59 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #endif     // POINTING_DEVICE_ENABLEE
 
 #ifdef RGB_MATRIX_ENABLE
-// Forward-declare this helper function since it is defined in rgb_matrix.c.
-void rgb_matrix_update_pwm_buffers(void);
-#endif // RGB_MATRIX_ENABLE
+// Layer state indicator
+bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
+    if (!rgb_matrix_indicators_advanced_user(led_min, led_max)) { return false; }
+    if (host_keyboard_led_state().caps_lock) {
+        for (int i = led_min; i <= led_max; i++) {
+            if (HAS_FLAGS(g_led_config.flags[i], LED_FLAG_MODIFIER)) {
+                rgb_matrix_set_color(i, MIN(rgb_matrix_get_val() + 76, 255), 0x00, 0x00);
+            }
+        }
+    }
 
+    uint8_t layer = get_highest_layer(layer_state);
+        HSV hsv = rgb_matrix_get_hsv();
+        switch (get_highest_layer(layer_state)) {
+            case 0:
+                hsv = (HSV){HSV_WHITE};
+            case 1:
+                hsv = (HSV){HSV_CHARTREUSE};
+                break;
+            case 2:
+                hsv = (HSV){HSV_RED};
+                break;
+            case 3:
+                hsv = (HSV){HSV_GOLD};
+                break;
+            case 4:
+                hsv = (HSV){HSV_GREEN};
+                break;
+            case 5:
+                hsv = (HSV){HSV_TEAL};
+                break;
+            case 6:
+                hsv = (HSV){HSV_PURPLE};
+                break;
+            case 7:
+            default:
+                hsv = (HSV){HSV_ORANGE};
+                break;
+        };
+
+        if (hsv.v > rgb_matrix_get_val()) {
+            hsv.v = MIN(rgb_matrix_get_val() + 22, 255);
+        }
+        RGB rgb = hsv_to_rgb(hsv);
+
+        for (uint8_t i = led_min; i < led_max; i++) {
+            if (HAS_FLAGS(g_led_config.flags[i], LED_FLAG_UNDERGLOW)) {
+                rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+            }
+        }
+    return false;
+};
+#endif // RGB_MATRIX_ENABLE
 #ifdef ENCODER_MAP_ENABLE
 // clang-format off
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
