@@ -27,6 +27,6 @@
 #define RETRO_SHIFT 500
 // rgb
 #define ENABLE_MATRIX_SOLID_COLOR
-#define RGB_MATRIX_DEFAULT_HUE 0 // Sets the default hue value, if none has been set
-#define RGB_MATRIX_DEFAULT_SAT 0 // Sets the default saturation value, if none has been set
+#define RGB_MATRIX_DEFAULT_HUE 80 // Sets the default hue value, if none has been set
+#define RGB_MATRIX_DEFAULT_SAT 100 // Sets the default saturation value, if none has been set
 #define RGB_MATRIX_DEFAULT_VAL 128 // Sets the default brightness value, if none has been set
