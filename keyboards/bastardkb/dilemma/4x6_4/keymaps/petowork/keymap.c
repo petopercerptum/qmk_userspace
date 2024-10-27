@@ -126,34 +126,34 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
         }
     }
 
-    uint8_t layer = get_highest_layer(layer_state);
-        HSV hsv = rgb_matrix_get_hsv();
-        switch (get_highest_layer(layer_state)) {
-            case 0:
-                hsv = (HSV){HSV_WHITE};
-            case 1:
-                hsv = (HSV){HSV_CHARTREUSE};
-                break;
-            case 2:
-                hsv = (HSV){HSV_RED};
-                break;
-            case 3:
-                hsv = (HSV){HSV_GOLD};
-                break;
-            case 4:
-                hsv = (HSV){HSV_GREEN};
-                break;
-            case 5:
-                hsv = (HSV){HSV_TEAL};
-                break;
-            case 6:
-                hsv = (HSV){HSV_PURPLE};
-                break;
-            case 7:
-            default:
-                hsv = (HSV){HSV_ORANGE};
-                break;
-        };
+    HSV hsv = rgb_matrix_get_hsv();
+    switch (get_highest_layer(layer_state)) {
+        case 0:
+            hsv = (HSV){HSV_WHITE};
+            break;
+        case 1:
+            hsv = (HSV){HSV_CHARTREUSE};
+            break;
+        case 2:
+            hsv = (HSV){HSV_RED};
+            break;
+        case 3:
+            hsv = (HSV){HSV_GOLD};
+            break;
+        case 4:
+            hsv = (HSV){HSV_GREEN};
+            break;
+        case 5:
+            hsv = (HSV){HSV_TEAL};
+            break;
+        case 6:
+            hsv = (HSV){HSV_PURPLE};
+            break;
+        case 7:
+        default:
+            hsv = (HSV){HSV_ORANGE};
+            break;
+    };
 
         if (hsv.v > rgb_matrix_get_val()) {
             hsv.v = MIN(rgb_matrix_get_val() + 22, 255);
