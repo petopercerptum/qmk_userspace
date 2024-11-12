@@ -24,7 +24,7 @@
 #define AUTO_SHIFT_MODIFIERS
 #define AUTO_SHIFT_TIMEOUT 175
 #define AUTO_SHIFT_ENTER
-#define RETRO_SHIFT 500
+#define RETRO_SHIFT
 // rgb
 #define ENABLE_MATRIX_SOLID_COLOR
 #define RGB_MATRIX_DEFAULT_HUE 0 // Sets the default hue value, if none has been set
