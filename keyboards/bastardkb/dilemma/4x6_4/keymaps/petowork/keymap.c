@@ -135,6 +135,8 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
         case KC_SPC:
             return true;
+        case PT_Z:
+            return true;
         default:
             return false;
     }
