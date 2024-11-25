@@ -32,6 +32,10 @@ enum dilemma_keymap_layers {
 #define TO_CTR TO(LAYER_CONTROL)
 #define PT_Z LT(LAYER_POINTER, KC_Z)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
+#define NT_5 LT(LAYER_NUM, KC_5)
+#define NT_6 LT(LAYER_NUM, KC_6)
+#define CT_4 LT(LAYER_CONTROL,KC_4)
+#define CT_7 LT(LAYER_CONTROL, KC_7)
 #define AESC MT(MOD_LALT, KC_ESC)
 #define WDEL MT(MOD_LGUI, KC_DEL)
 // AUTO MOUSE LAYER ON USE
@@ -47,7 +51,7 @@ enum dilemma_keymap_layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-          WDEL,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,       KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_NUBS,
+          WDEL,    KC_1,    KC_2,    KC_3,    CT_4,    NT_5,       NT_6,    CT_7,    KC_8,    KC_9,    KC_0, KC_NUBS,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
         KC_EQL,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_NUHS,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
@@ -55,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        SC_LCPO,    PT_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SC_RCPC,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                          TO_NUM,  KC_SPC, KC_BSPC, KC_LBRC,    KC_RBRC,  KC_TAB,  KC_ENT,    AESC
+                         KC_LSFT,  KC_SPC,  KC_TAB, KC_LBRC,    KC_RBRC, KC_BSPC,  KC_ENT,    AESC
   //                    ╰───────────────────────────────────╯ ╰───────────────────────────────────╯
   ),
 
@@ -69,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        RGB_VAD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_PDOT,   KC_P1,   KC_P2,   KC_P3, KC_PENT, _______,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                          TO_CTR, _______, _______, _______,    _______, _______, _______, _______
+                         KC_LSFT, _______, _______, _______,    _______, _______, _______, _______
   //                    ╰───────────────────────────────────╯ ╰───────────────────────────────────╯
   ),
 
@@ -83,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        KC_MPRV, KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLD,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                          TO_BSE, _______, _______, XXXXXXX,    _______, XXXXXXX, XXXXXXX, XXXXXXX
+                         KC_LSFT, _______, _______, XXXXXXX,    _______, XXXXXXX, XXXXXXX, XXXXXXX
   //                    ╰───────────────────────────────────╯ ╰───────────────────────────────────╯
   ),
 
@@ -95,9 +99,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,    XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, _______, DRGSCRL, SNIPING, EE_CLR,  QK_BOOT,    QK_BOOT, EE_CLR,  SNIPING, DRGSCRL, _______, XXXXXXX,
+       KC_LCTL, _______, DRGSCRL, SNIPING, EE_CLR,  QK_BOOT,    QK_BOOT, EE_CLR,  SNIPING, DRGSCRL, _______, XXXXXXX,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                         XXXXXXX, KC_BTN2, KC_BTN1, KC_BTN3,    KC_BTN3, KC_BTN1, KC_BTN2, XXXXXXX
+                         KC_LSFT, KC_BTN2, KC_BTN1, KC_BTN3,    KC_BTN3, KC_BTN1, KC_BTN2, XXXXXXX
   //                    ╰───────────────────────────────────╯ ╰───────────────────────────────────╯
   ),
 };
@@ -136,6 +140,14 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
         case KC_SPC:
             return true;
         case PT_Z:
+            return true;
+        case NT_5:
+            return true;
+        case NT_6:
+            return true;
+        case CT_4:
+            return true;
+        case CT_7:
             return true;
         default:
             return false;
