@@ -181,3 +181,13 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
             unregister_code16((IS_RETRO(keycode)) ? keycode & 0xFF : keycode);
     }
 }
+
+//Mod-Tap per key
+uint16_t get_tappint_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case AESC:
+            return 250;
+        case SAPP:
+            return 250;
+        default:
+            return TAPPING_TERM;
