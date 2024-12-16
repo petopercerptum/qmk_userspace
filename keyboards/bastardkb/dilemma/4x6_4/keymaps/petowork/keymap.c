@@ -60,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        SC_LCPO,    PT_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SC_RCPC,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                            SAPP,  KC_SPC, KC_BSPC, KC_LBRC,    KC_RBRC,  KC_TAB,  KC_ENT,    AESC
+                            SAPP,  KC_SPC, KC_BSPC, KC_LBRC,    KC_LCBR,  KC_TAB,  KC_ENT,    AESC
   //                    ╰───────────────────────────────────╯ ╰───────────────────────────────────╯
   ),
 
@@ -140,6 +140,12 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
         case KC_SPC:
             return true;
+        case KC_LBRC:
+            return true;
+        case KC_LCBR:
+            return true;
+        case KC_MINS:
+            return true;
         case PT_Z:
             return true;
         case NT_5:
@@ -160,6 +166,15 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
         case KC_SPC:
             register_code16((!shifted) ? KC_SPC : KC_UNDS);
             break;
+        case KC_LBRC:
+            register_code16((!shifted) ? KC_LBRC : KC_RBRC);
+            break;
+        case KC_LCBR:
+            register_code16((!shifted) ? KC_LCBR : KC_RCBR);
+            break;
+        case KC_MINS:
+            register_code16((!shifted) ? KC_MINS : KC_GRV);
+            break;
         default:
             if (shifted) {
                 add_weak_mods(MOD_BIT(KC_LSFT));
@@ -173,6 +188,15 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
     switch(keycode) {
         case KC_SPC:
             unregister_code16((!shifted) ? KC_SPC : KC_UNDS);
+            break;
+        case KC_LBRC:
+            unregister_code16((!shifted) ? KC_LBRC : KC_RBRC);
+            break;
+        case KC_LCBR:
+            unregister_code16((!shifted) ? KC_LCBR : KC_RCBR);
+            break;
+        case KC_MINS:
+            unregister_code16((!shifted) ? KC_MINS : KC_GRV);
             break;
         default:
             // & 0xFF gets the Tap key for Tap Holds, required when using Retro Shift
